@@ -1,5 +1,5 @@
 import { Board, Coordinates } from "../types";
-import {possibleMoves} from '../constants'
+import { possibleMoves } from "../constants";
 
 export function getInitialBallPosition(board: Board): Coordinates {
   const ballPos = [];

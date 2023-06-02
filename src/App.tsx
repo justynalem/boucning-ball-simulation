@@ -1,5 +1,5 @@
-import { useBouncingBall } from './hooks/useBouncingBall';
-import { initialBoard } from './constants';
+import { useBouncingBall } from "./hooks/useBouncingBall";
+import { initialBoard } from "./constants";
 
 function App() {
   const board = useBouncingBall(initialBoard);
@@ -15,12 +15,12 @@ function App() {
             board[r][c] === "X"
               ? "red"
               : board[r][c] === "Y"
-                ? "blue"
-                : board[r][c] === "0"
-                  ? "white"
-                  : board[r][c] === "1"
-                    ? "black"
-                    : "white",
+              ? "blue"
+              : board[r][c] === "0"
+              ? "white"
+              : board[r][c] === "1"
+              ? "black"
+              : "white",
           border: "1px solid black",
         }}></div>
     ))
