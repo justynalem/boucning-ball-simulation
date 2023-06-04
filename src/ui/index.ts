@@ -4,3 +4,4 @@ export * from "./Block";
 export * from "./Wall";
 export * from "./Opponent";
 export * from "./Container";
+export * from "./Button";

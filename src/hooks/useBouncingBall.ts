@@ -1,10 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Board, Coordinates } from "../types";
-import { getInitialBallPosition, getNewDirection, getRandomDirection } from "../utils";
+import {
+  getInitialBallPosition,
+  getNewDirection,
+  getRandomDirection,
+} from "../utils";
 
 export const useBouncingBall = (initialBoard: Board) => {
   const [board, setBoard] = useState<Board>(initialBoard);
-  const [current, setCurrent] = useState<Coordinates>(getInitialBallPosition(board));
+  const [current, setCurrent] = useState<Coordinates>(
+    getInitialBallPosition(board)
+  );
+  const [started, setStarted] = useState(false);
   const direction = useRef<Coordinates>(getRandomDirection());
 
   const applyNewCurrent = useCallback(() => {
@@ -15,36 +22,45 @@ export const useBouncingBall = (initialBoard: Board) => {
     const futureCol = currentCol + directionCol;
     const cellValue = board[futureRow][futureCol];
 
-    if (cellValue === '0') {
+    if (cellValue === "0") {
       setBoard(board => {
-        board[futureRow][futureCol] = '1';
-        board[currentRow][currentCol] = '0';
+        board[futureRow][futureCol] = "1";
+        board[currentRow][currentCol] = "0";
         return [...board];
       });
-
+      
       return setCurrent([futureRow, futureCol]);
     }
 
-    if (cellValue === 'X') {
+    if (cellValue === "X") {
       direction.current = getNewDirection(direction.current, current, board);
       return applyNewCurrent();
     }
 
-    if (cellValue === 'Y') {
+    if (cellValue === "Y") {
       setBoard(board => {
-        board[futureRow][futureCol] = 'X';
+        board[futureRow][futureCol] = "X";
         return [...board];
       });
 
       direction.current = getNewDirection(direction.current, current, board);
       return applyNewCurrent();
     }
-
   }, [board, current]);
 
   useEffect(() => {
-    setTimeout(applyNewCurrent, 80);
-  }, [current, applyNewCurrent]);
+    if (started){
+      setTimeout(applyNewCurrent, 80);
+    }
+  }, [current, started, applyNewCurrent]);
 
-  return board;
+  const start = useCallback(() => {
+    setStarted(true);
+  }, [setStarted]);
+
+  const stop = useCallback(() => {
+    setStarted(false);
+  }, [setStarted]);
+
+  return { board, start, stop, started };
 };
