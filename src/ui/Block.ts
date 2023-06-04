@@ -6,5 +6,5 @@ export const Block = styled.div`
   align-items: center;
   width: 30px;
   height: 30px;
-  border: 1px dotted rgba(255,255,255,0.50);
+  border: 1px dotted rgba(255, 255, 255, 0.5);
 `;

@@ -19,7 +19,7 @@ export function getNewDirection(
   board: Board
 ) {
   const currentDirection = getDirectionNameFromCurrentMove(direction);
-  const newMove =  possibleNewDirections[currentDirection].find(([row, col]) => {
+  const newMove = possibleNewDirections[currentDirection].find(([row, col]) => {
     const newRow = currentRow + row;
     const newCol = currentCol + col;
     const newValue = board[newRow][newCol];
@@ -27,9 +27,9 @@ export function getNewDirection(
   });
 
   if (!newMove) {
-    throw new Error('No move possible')
+    throw new Error("No move possible");
   }
-  return newMove
+  return newMove;
 }
 
 export function getInitialBallPosition(board: Board): Coordinates {
