@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Board, Coordinates } from "../types";
-import { getInitialBallPosition, getRandomDirection } from "../utils";
+import { getInitialBallPosition, getNewDirection, getRandomDirection } from "../utils";
 
 export const useBouncingBall = (initialBoard: Board) => {
   const [board, setBoard] = useState<Board>(initialBoard);
@@ -26,24 +26,24 @@ export const useBouncingBall = (initialBoard: Board) => {
     }
 
     if (cellValue === 'X') {
-      direction.current = getRandomDirection();
+      direction.current = getNewDirection(direction.current, current, board);
       return applyNewCurrent();
     }
 
     if (cellValue === 'Y') {
       setBoard(board => {
-        board[futureRow][futureCol] = '0';
+        board[futureRow][futureCol] = 'X';
         return [...board];
       });
 
-      direction.current = getRandomDirection();
+      direction.current = getNewDirection(direction.current, current, board);
       return applyNewCurrent();
     }
 
   }, [board, current]);
 
   useEffect(() => {
-    setTimeout(applyNewCurrent, 500);
+    setTimeout(applyNewCurrent, 80);
   }, [current, applyNewCurrent]);
 
   return board;
