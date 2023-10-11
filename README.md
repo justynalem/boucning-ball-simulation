@@ -1,17 +1,21 @@
-## Live Demo
+# Bouncing ball simulation
 
-Check out the live demo of the app [here](https://bouncing-ball-simulation-react.netlify.app/).
+## Tool & technologies I've used
 
-# Getting Started
+- React
+- TypeScript
+- styled components
 
-## Prerequisites
+## Getting Started
+
+### Prerequisites
 
 To run the React app, make sure you have the following software installed on your machine:
 
 - Node.js (v14.0.0 or later)
 - npm (v6.0.0 or later)
 
-## Installation
+### Installation
 
 Follow these steps to install and set up the React app:
 
@@ -33,7 +37,7 @@ Follow these steps to install and set up the React app:
    npm install
    ```
 
-## Development
+### Development
 
 To start the development server and run the React app locally, use the following command:
 
@@ -43,11 +47,16 @@ npm run dev
 
 This command will start the development server and open your default browser with the app running at `http://localhost:5173`.
 
-## Building for Production
+### Building for Production
 
 To build the React app for production, use the following command:
 
 ```bash
 npm run build
 ```
+
 This will create a dist directory with the compiled assets.
+
+### Screens
+
+# ![cover](screens/screen.png)
